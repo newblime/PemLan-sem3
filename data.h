@@ -12,7 +12,6 @@ void init_datapajak();
 // mencari data pajak berdasarkan nik
 data_pajak search_datapajak(unsigned long nik);
 
-void test();
 
 
 #endif
