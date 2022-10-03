@@ -2,8 +2,8 @@
 #define DATA_HEADER
 
 struct data_pajak{
-  unsigned long nik;
-  unsigned long pajak_sekarang;
+  unsigned long long nik;
+  unsigned long long pajak_sekarang;
 };
 
 

@@ -11,9 +11,34 @@ void edit_data(data_pajak *dp){
   cin >> dp->nik;
   fflush(stdin);
 
-  cout << "Masukkan pajak Tahun ini: Rp.";
-  cin >> dp->pajak_sekarang;
+  unsigned long long gaji;
+  cout << "Masukkan penghasilan Tahun ini: Rp.";
+  cin >> gaji;
   fflush(stdin);
+
+  int anggota;
+  cout << "Berapa anggota keluarga anda? (jawab 0 jika tidak berkeluarga): ";
+  cin >> anggota;
+
+  unsigned long long ptkp = 54000000;
+  if(anggota > 0)
+    ptkp += 4500000 * min(3, anggota);
+  
+  if(ptkp > gaji){
+    dp->pajak_sekarang = 0;
+    return;
+  }
+
+  unsigned long long pkp = gaji - ptkp;
+  int tp = 5;
+  if(pkp > 5000000000)
+    tp = 50;
+  else if(pkp > 250000000)
+    tp = 25;
+  else if(pkp > 50000000)
+    tp = 15;
+
+  dp->pajak_sekarang = (pkp/100)*tp;
 }
 
 int main(){
@@ -79,9 +104,9 @@ int main(){
           cout << "Data ke-" << data_idx+1 << endl;
           cout << endl;
           cout << "NIK: " << fp.pajak[data_idx].nik << endl;
-          cout << "Pajak Tahun ini: Rp." << fp.pajak[data_idx].pajak_sekarang << endl;
+          cout << "Pajak penghasilan Tahun ini: Rp." << fp.pajak[data_idx].pajak_sekarang << endl;
           cout << endl << endl;
-          cout << "Pencet 'n' atau arrow keys kanan atau kiri untuk mengganti index.\nPencet 'e' untuk mengedit data.\nPencet 't' untuk menambahkan data.\nPencet 'f' untuk kembali ke menu awal.\nPencet 'q' untuk keluar dari program." << endl << endl;
+          cout << "Pencet 'n' atau arrow keys kanan atau kiri untuk mengganti index.\nPencet 'e' untuk mengedit data.\nPencet 't' untuk menambahkan data.\nPencet 'h' untuk menghapus data.\nPencet 'f' untuk kembali ke menu awal.\nPencet 'q' untuk keluar dari program." << endl << endl;
           char c = _getch();
           switch(c){
             // quit
@@ -116,6 +141,23 @@ int main(){
 
               data_idx = fp.banyak-1;
               fp.pajak[data_idx] = d;
+            }
+
+            // menghapus data
+            break; case 'h':{
+              if(fp.banyak > 1){
+                for(int i = data_idx; i < (fp.banyak-1); i++)
+                  fp.pajak[i] = fp.pajak[i+1];
+                
+                fp.banyak--;
+                fp.pajak = (data_pajak*)realloc(fp.pajak, sizeof(data_pajak)*fp.banyak);
+
+                if(data_idx >= fp.banyak)
+                  data_idx = fp.banyak-1;
+              }
+              else{
+                fp.pajak[0] = data_pajak();
+              }
             }
 
             // ganti index
