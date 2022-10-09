@@ -7,13 +7,7 @@
 /*      perhitungan harga bensin      */
 
 // menghitung harga bensin berdasarkan data pajak pengguna
-unsigned long hitung_hargabensin(data_pajak data_pengguna);
-
-// menampilkan semua opsi yang ada berdasarkan array opsi
-void tampilkan_opsi(opsi *opsi_array, int banyak_opsi);
-
-// menampilkan struk harga bensin
-void tampilkan_hargabensin(data_pajak data_pengguna, unsigned long harga);
+unsigned long long hitung_hargabensin(data_pajak data_pengguna);
 
 
 /*      untuk pengurusan data     */
@@ -21,8 +15,11 @@ void tampilkan_hargabensin(data_pajak data_pengguna, unsigned long harga);
 // pengambilan data pajak
 void init_datapajak();
 
-// mencari data pajak berdasarkan nik
-data_pajak search_datapajak(unsigned long nik);
+// mencari index data pajak berdasarkan nik
+int search_datapajak(unsigned long long nik);
+
+// mengambil data pajak berdasarkan index
+data_pajak get_datapajak(int idx);
 
 
 #endif

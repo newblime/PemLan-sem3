@@ -1,3 +1,5 @@
+#include "windows.h"
+
 #include "iostream"
 #include "conio.h"
 #include "file_.h"
@@ -5,8 +7,12 @@
 
 using namespace std;
 
+void clear_terminal(){
+  cout << "\x1b[1J\x1b[H";
+}
+
 void edit_data(data_pajak *dp){
-  system("cls");
+  clear_terminal();
   cout << "Masukkan NIK: ";
   cin >> dp->nik;
   fflush(stdin);
@@ -42,9 +48,12 @@ void edit_data(data_pajak *dp){
 }
 
 int main(){
+  // setting terminal
+  SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), 0x4 | 0x1);
+
   bool b = true;
   while(b){
-    system("cls");
+    clear_terminal();
     cout << "Pencet 'g' untuk menggabung data dari kedua file.\nPencet 'e' untuk mengedit salah satu file.\nPencet 'q' untuk keluar dari program." << endl << endl;
     char _c = _getch();
     switch(_c){
@@ -99,7 +108,7 @@ int main(){
 
         bool b1 = true;
         while(b1){
-          system("cls");
+          clear_terminal();
           cout << "Nama file: " << namafile << endl;
           cout << "Data ke-" << data_idx+1 << endl;
           cout << endl;
@@ -120,7 +129,7 @@ int main(){
             
             // ganti nomor
             break; case 'n':{
-              system("cls");
+              clear_terminal();
               cout << "Masukkan angka index: ";
               cin >> data_idx;
               fflush(stdin);
@@ -185,5 +194,5 @@ int main(){
     }
   }
 
-  system("cls");
+  clear_terminal();
 }
