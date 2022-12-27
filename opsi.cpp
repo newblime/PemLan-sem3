@@ -2,27 +2,28 @@
 
 
 opsi *_opsi_main = NULL;
+int _opsi_main_len = 0;
 
 
-void perhitungan_bensin(){
-  cout << "test" << endl;
+
+const opsi *ambil_opsiarray(){
+  return _opsi_main;
 }
 
-void pilihan_identitas(){
-  tampil_identitas(nama, nik, gaji);
+int banyak_opsiarray(){
+  return _opsi_main_len;
 }
-
 
 void _tambah_opsi(opsi o){
+  if(!_opsi_main)
+    _opsi_main = (opsi*)malloc(0);
+  
+  _opsi_main_len++;
+  _opsi_main = (opsi*)realloc(_opsi_main, _opsi_main_len*sizeof(opsi));
 
+  _opsi_main[_opsi_main_len] = o;
 }
 
 void init_opsi(){
-  _tambah_opsi(opsi{
-    .nama_opsi = "Perhitungan harga bensin",
-    .deskripsi_opsi = "Memperhitungkan total bensin berdasarkan pajak gaji.",
-    .fungsi = perhitungan_bensin
-  });
-
-  _tambah_opsi(opsi{....});
+  
 }

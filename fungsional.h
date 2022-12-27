@@ -23,4 +23,7 @@ int search_datapajak(unsigned long long nik);
 data_pajak get_datapajak(int idx);
 
 
+void buka_lokasi_pom();
+
+
 #endif

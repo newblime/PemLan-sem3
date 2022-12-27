@@ -18,7 +18,7 @@ struct opsi{
 void init_opsi();
 
 // pengambilan opsi array yang dibuat diawal
-opsi *ambil_opsiarray();
+const opsi *ambil_opsiarray();
 
 // panjang dari opsi array
 int banyak_opsiarray();
