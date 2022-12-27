@@ -3,7 +3,8 @@
 #include <Windows.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <opsi.h>
+#include "opsi.h"
+#include "fungsional.h"
 
 using namespace std;
 
@@ -78,16 +79,20 @@ void tampilan_menu(){
 	system("cls");
 	cout << "Selamat datang di aplikasi MyPertamona " << nama << endl;
 	cout << "Menu program	: " << endl;
-	cout << "1. Menunjukkan lokasi pom bensin" << endl;
-	cout << "2. Perhitungan harga bensin berdasarkan pajak" << endl;
-	cout << "3. Mendapatkan data pajak berdasarkan NIK" << endl;
-	cout << "4. Melakukan pembayaran bensin" << endl;
+
+  for(int i = 0; i < banyak_opsiarray(); i++)
+    cout << (i+1) << ". " << ambil_opsi(i)->deskripsi_opsi << endl;
+
 	int index;
 	cout << "Masukkan pilihan : "; cin >> index;
+
+  ambil_opsi(index-1)->fungsi();
 }
 
 void tampilan_lokasi(){
 	loading();
+  
+  buka_lokasi_pom();
 }
 
 void harga_bensin(){
