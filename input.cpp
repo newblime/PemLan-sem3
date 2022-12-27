@@ -9,4 +9,4 @@ int nik(){
   if (nik golongan 1 maka pajaknya gol 1 terus sampai golongan 5)
   //kita define dlu data pajaknya
   //contohnya kita aja biar gampang sementara npm saja
-}
+} 
