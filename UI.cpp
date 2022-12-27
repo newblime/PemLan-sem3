@@ -65,11 +65,3 @@ void loading(){
 	//cout << "\n\n\t\t\t\t\t" << (char)1 << "!";
 	//system("pause");
 }
-
-//ini fungsi main hanya buat testing
-int main(){
-    loadscreen();
-    loading();
-
-	return 0;
-}
