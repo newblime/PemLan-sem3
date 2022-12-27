@@ -3,10 +3,23 @@
 #include <Windows.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <conio.h>
 #include "opsi.h"
 #include "fungsional.h"
 
 using namespace std;
+
+string nama;
+long long int nik;
+COORD coord = {0, 0};
+
+//fungsi gotoxy bisa digunain untuk atur posisi output
+void gotoxy(int x, int y){
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
 
 void delay(){
 	int delay;
@@ -16,6 +29,36 @@ void delay(){
 	}
 }
 
+void border(){
+	int i, style = 178;
+	for(i = 0; i <= 70; i++){
+		gotoxy(i, 0);
+		cout << (char)style;
+		gotoxy(i, 24);
+		cout << (char)style;
+	}
+	for(i = 0; i <= 24; i++){
+		gotoxy(0, i);
+		cout << (char)style;
+		gotoxy(70, i);
+		cout << (char)style;
+	}
+}
+
+void call_border(){
+	system("cls");
+	border();
+	getch();
+}
+
+void print(vector<string>&stringVec){
+    cout << setfill( '*' ) << setw( 40 ) << '*' <<  endl;
+    for( int i=0; i< stringVec.size(); i++ ) {
+        cout << '*' << left << setfill(' ' ) << setw( 40 - 2 ) << stringVec[i] << '*'<< endl;
+    }
+    cout << setfill( '*' ) << setw( 40 ) << '*' <<  endl;
+}
+
 void loadscr(){
 	vector<char>load = {'M', 'Y', 'P', 'E', 'R', 'T', 'A', 'M', 'O', 'N', 'A'};
 	for(int i = 0; i < load.size(); i++) {
@@ -23,14 +66,6 @@ void loadscr(){
 		delay();
 	}
 	sleep(2);
-}
-
-//fungsi gotoxy bisa digunain untuk atur posisi output
-void gotoxy(int x, int y){
-    COORD coord;
-    coord.X = x;
-    coord.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
 void loadscreen(){
@@ -70,53 +105,48 @@ void loading(){
 
 void tampilan_menu(){
 	system("cls");
-	string nama;
-	long long int nik;
+	gotoxy(100, 14);
 	cout << "Program Duplikat MyPertamina" << endl;
 	cout << "Masukkan nama anda\t: "; getline(cin, nama);
 	cout << "Masukkan nomor NIK anda : "; cin >> nik;
 
-	system("cls");
-	cout << "Selamat datang di aplikasi MyPertamona " << nama << endl;
-	cout << "Menu program	: " << endl;
+	cout << "Selamat datang di aplikasi MyPertamona" << nama << endl;
+	cout << "Menu program\t: " << endl;
 
-  for(int i = 0; i < banyak_opsiarray(); i++)
-    cout << (i+1) << ". " << ambil_opsi(i)->deskripsi_opsi << endl;
+  	for(int i = 0; i < banyak_opsiarray(); i++)
+    	cout << (i+1) << ". " << ambil_opsi(i)->deskripsi_opsi << endl;
 
 	int index;
-	cout << "Masukkan pilihan : "; cin >> index;
 
-  ambil_opsi(index-1)->fungsi();
+	cout << "Masukkan pilihan\t: "; cin >> index;
+
+  	ambil_opsi(index-1)->fungsi();
 }
 
 void tampilan_lokasi(){
 	loading();
-  
-  buka_lokasi_pom();
+  	buka_lokasi_pom();
 }
 
 void harga_bensin(){
-	long long int a;
-	cout << "Masukkan nomor NIK anda : "; cin >> a;
-	cout << "Nama\t: " << endl;
-	cout << "NIK\t: " << endl;
-	cout << "Pajak Bensin\t: " << endl;
+	cout << "Nama: " << nama << endl;
+	cout << "NIK : " << nik << endl;
+	loading();
+	cout << "Pajak Bensin : " << endl;
 }
 
 void data_pajak(){
-	cout << "Nama\t" << endl;
-	cout << "NIK\t" << endl;
+	gotoxy(30, 14);
+	cout << "Nama\t: " << nama << endl;
+	cout << "NIK\t: " << nik << endl;
 	cout << "Harga bensin berdasarkan pajak\t: " << endl;
 }
 
 void struk(){
-	cout << "Nama\t" << endl;
-	cout << "NIK\t" << endl;
+	cout << "Nama\t: " << nama << endl;
+	cout << "NIK\t: " << nik << endl;
 	long long uang;
-	cout << "Masukkan uang anda : "; cin >> uang;
-	cout << "Total Pembayaran : " << endl;
-	cout << "Kembalian : " << endl;
+	cout << "Masukkan uang anda\t: "; cin >> uang;
+	cout << "Total Pembayaran\t: " << endl;
+	cout << "Kembalian\t: " << endl;
 }
-
-void asda(){}
-//asdfasdf

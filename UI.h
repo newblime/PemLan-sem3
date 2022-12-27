@@ -11,5 +11,8 @@ void tampilan_lokasi();
 void harga_bensin();
 void data_pajak();
 void struk();
+void print();
+void border();
+void call_border();
 
 #endif

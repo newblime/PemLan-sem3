@@ -34,19 +34,19 @@ void struk();
 void init_opsi(){
   _tambah_opsi(new opsi{
     .nama_opsi = "Lokasi pom bensin",
-    .deskripsi_opsi = "Menunjukkan lokasi pom bensin lewat web",
+    .deskripsi_opsi = "Menunjukkan lokasi pom bensin terdekat",
     .fungsi = tampilan_lokasi
   });
 
   _tambah_opsi(new opsi{
     .nama_opsi = "Perhitungan harga bensin",
-    .deskripsi_opsi = "Menghitungan harga bensin user berdasarkan NIK",
+    .deskripsi_opsi = "Perhitungan harga bensin berdasarkan pajak",
     .fungsi = harga_bensin
   });
 
   _tambah_opsi(new opsi{
     .nama_opsi = "Data pajak user",
-    .deskripsi_opsi = "Menampilkan data-data user",
+    .deskripsi_opsi = "Menampilkan data-data user berdasarkan NIK",
     .fungsi = data_pajak
   });
 

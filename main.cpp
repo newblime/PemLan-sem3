@@ -7,7 +7,11 @@
 using namespace std;
 
 int main(){
+  loadscreen();
+
   init_opsi();
+
+  print();
 
   tampilan_menu();
 }
