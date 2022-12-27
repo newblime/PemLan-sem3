@@ -112,3 +112,5 @@ void struk(){
 	cout << "Total Pembayaran : " << endl;
 	cout << "Kembalian : " << endl;
 }
+
+void asda(){}
