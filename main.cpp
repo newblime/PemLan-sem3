@@ -11,7 +11,9 @@ int main(){
 
   init_opsi();
 
-  print();
+  // nggak kepake fungsi nya
+  // vector<string> svect;
+  // print(svect);
 
   tampilan_menu();
 }

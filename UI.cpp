@@ -135,7 +135,8 @@ void harga_bensin(){
 	cout << "Pajak Bensin : " << endl;
 }
 
-void data_pajak(){
+// namanya jangan sama dengan struct data_pajak1
+void _data_pajak(){
 	gotoxy(30, 14);
 	cout << "Nama\t: " << nama << endl;
 	cout << "NIK\t: " << nik << endl;

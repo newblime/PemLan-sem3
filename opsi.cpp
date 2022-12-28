@@ -28,7 +28,7 @@ void _tambah_opsi(opsi *o){
 // deklarasi fungsi luar
 void tampilan_lokasi();
 void harga_bensin();
-void data_pajak();
+void _data_pajak();
 void struk();
 
 void init_opsi(){
@@ -47,7 +47,7 @@ void init_opsi(){
   _tambah_opsi(new opsi{
     .nama_opsi = "Data pajak user",
     .deskripsi_opsi = "Menampilkan data-data user berdasarkan NIK",
-    .fungsi = data_pajak
+    .fungsi = _data_pajak
   });
 
   _tambah_opsi(new opsi{
