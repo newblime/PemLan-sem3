@@ -133,9 +133,10 @@ void harga_bensin(){
 	cout << "NIK : " << nik << endl;
 	loading();
 	cout << "Pajak Bensin : " << endl;
+	unsigned long long hargabensin = hitung_hargabensin(get_datapajak(search_datapajak(nik)), 10000);
 }
 
-// namanya jangan sama dengan struct data_pajak1
+// namanya jangan sama dengan struct data_pajak
 void _data_pajak(){
 	gotoxy(30, 14);
 	cout << "Nama\t: " << nama << endl;
