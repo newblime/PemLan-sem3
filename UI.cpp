@@ -79,13 +79,13 @@ void loadscreen(){
 void loading(){
     system("color 70");
 	system("cls");
-	gotoxy(30, 10);
+	gotoxy(32, 10);
 
 	SetConsoleCP(437);
 	SetConsoleOutputCP(437);
 	int bar1 = 177, bar2 = 219;
 
-	cout << "\n\t\t\t\t\t    L O A D I N G...";
+	cout << "\n\t\t\t\t\t     L O A D I N G...";
 	cout << "\n\n\n\t\t\t\t\t";
 
 	for(int i = 0; i < 25; i++)
@@ -105,7 +105,7 @@ void loading(){
 
 void tampilan_menu(){
 	system("cls");
-	
+
 	cout << "Program Duplikat MyPertamina" << endl;
 	cout << "Masukkan nama anda\t: "; getline(cin, nama_menu);
 	cout << "Masukkan nomor NIK anda : "; cin >> nik;
@@ -131,6 +131,7 @@ void tampilan_lokasi(){
 }
 
 void harga_bensin(){
+	system("cls");
 	gotoxy(30, 14);
 	cout << "Nama: " << nama_menu << endl;
 	cout << "NIK : " << nik << endl;
@@ -141,6 +142,7 @@ void harga_bensin(){
 
 // namanya jangan sama dengan struct data_pajak
 void _data_pajak(){
+	system("cls");
 	gotoxy(30, 14);
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
@@ -149,8 +151,10 @@ void _data_pajak(){
 }
 
 void struk(){
+	system("cls");
 	long long uang;
 	gotoxy(30, 14);
+	call_border();
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
 	cout << "Masukkan uang anda\t: "; cin >> uang;
