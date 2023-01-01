@@ -23,7 +23,4 @@ const opsi *ambil_opsi(int i);
 // panjang dari opsi array
 int banyak_opsiarray();
 
-void init_opsi();
-
-//asdasda
 #endif
