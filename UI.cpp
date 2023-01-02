@@ -98,21 +98,69 @@ void loading(){
 		cout << (char)bar2;
 		Sleep(100);
 	}
-
 	//cout << "\n\n\t\t\t\t\t" << (char)1 << "!";
 	//system("pause");
 }
 
+void load_struk(){
+    system("color 70");
+	system("cls");
+	gotoxy(32, 10);
+
+	SetConsoleCP(437);
+	SetConsoleOutputCP(437);
+	int bar1 = 177, bar2 = 219;
+
+	cout << "\n\t\t\t\t\t     P E M B U A T A N S T R U K...";
+	cout << "\n\n\n\t\t\t\t\t";
+
+	for(int i = 0; i < 25; i++)
+		cout << (char)bar1;
+
+	cout << "\r";
+	cout << "\t\t\t\t\t";
+
+	for(int i = 0; i < 25; i++){
+		cout << (char)bar2;
+		Sleep(100);
+	}
+}
+
+void load_mencari(){
+	system("color 70");
+	system("cls");
+	gotoxy(32, 10);
+
+	SetConsoleCP(437);
+	SetConsoleOutputCP(437);
+	int bar1 = 177, bar2 = 219;
+
+	cout << "\n\t\t\t\t\t     M E N C A R I D A T A...";
+	cout << "\n\n\n\t\t\t\t\t";
+
+	for(int i = 0; i < 25; i++)
+		cout << (char)bar1;
+
+	cout << "\r";
+	cout << "\t\t\t\t\t";
+
+	for(int i = 0; i < 25; i++){
+		cout << (char)bar2;
+		Sleep(100);
+	}
+}
+
 void tampilan_menu(){
 	system("cls");
-
+	gotoxy(20, 5);
 	cout << "Program Duplikat MyPertamina" << endl;
+
 	cout << "Masukkan nama anda\t: "; getline(cin, nama_menu);
 	cout << "Masukkan nomor NIK anda : "; cin >> nik;
 
 	system("cls");
 
-	cout << "Selamat datang di aplikasi MyPertamona" << nama_menu << endl;
+	cout << "Selamat datang di aplikasi MyPertamona " << nama_menu << endl;
 	cout << "Menu program\t: " << endl;
 
   	for(int i = 0; i < banyak_opsiarray(); i++)
@@ -143,9 +191,9 @@ void harga_bensin(){
 // namanya jangan sama dengan struct data_pajak
 void _data_pajak(){
 	system("cls");
-	gotoxy(30, 14);
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
+	load_mencari();
 	cout << "Harga bensin berdasarkan pajak\t: " << endl;
 	search_datapajak(nik);
 }
@@ -153,7 +201,7 @@ void _data_pajak(){
 void struk(){
 	system("cls");
 	long long uang;
-	gotoxy(30, 14);
+	pembuatan_struk();
 	call_border();
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;

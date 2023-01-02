@@ -17,11 +17,13 @@ void struk();
 void print(std::vector<std::string>&);
 void border();
 void call_border();
+void load_struk();
+void load_mencari();
 
 // pemanggilan fungsi sama seperti printf, namun dengan tambahan code pewarnaan
 // parameter paling akhir sama seperti parameter yang dikasih para printf
 //
 // menggunakan library luar
-void _printf(const char *str, short fcode, short bcode, ...);
+void _printf(const char *str, short fcode, short bcode);
 
 #endif
