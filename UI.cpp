@@ -9,7 +9,7 @@
 
 using namespace std;
 
-string nama;
+string nama_menu;
 long long int nik;
 COORD coord = {0, 0};
 
@@ -85,7 +85,7 @@ void loading(){
 	SetConsoleOutputCP(437);
 	int bar1 = 177, bar2 = 219;
 
-	cout << "\n\t\t\t\t\t    L O A D I N G...";
+	cout << "\n\t\t\t\t\t     L O A D I N G...";
 	cout << "\n\n\n\t\t\t\t\t";
 
 	for(int i = 0; i < 25; i++)
@@ -105,12 +105,14 @@ void loading(){
 
 void tampilan_menu(){
 	system("cls");
-	gotoxy(100, 14);
+
 	cout << "Program Duplikat MyPertamina" << endl;
-	cout << "Masukkan nama anda\t: "; getline(cin, nama);
+	cout << "Masukkan nama anda\t: "; getline(cin, nama_menu);
 	cout << "Masukkan nomor NIK anda : "; cin >> nik;
 
-	cout << "Selamat datang di aplikasi MyPertamona" << nama << endl;
+	system("cls");
+
+	cout << "Selamat datang di aplikasi MyPertamona" << nama_menu << endl;
 	cout << "Menu program\t: " << endl;
 
   	for(int i = 0; i < banyak_opsiarray(); i++)
@@ -129,26 +131,37 @@ void tampilan_lokasi(){
 }
 
 void harga_bensin(){
-	cout << "Nama: " << nama << endl;
+	system("cls");
+	gotoxy(30, 14);
+	cout << "Nama: " << nama_menu << endl;
 	cout << "NIK : " << nik << endl;
 	loading();
-	cout << "Pajak Bensin : " << endl;
 	unsigned long long hargabensin = hitung_hargabensin(get_datapajak(search_datapajak(nik)), 10000);
+	cout << "Pajak Bensin : " << hargabensin << endl;
 }
 
 // namanya jangan sama dengan struct data_pajak
 void _data_pajak(){
+	system("cls");
 	gotoxy(30, 14);
-	cout << "Nama\t: " << nama << endl;
+	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
 	cout << "Harga bensin berdasarkan pajak\t: " << endl;
+	search_datapajak(nik);
 }
 
 void struk(){
-	cout << "Nama\t: " << nama << endl;
-	cout << "NIK\t: " << nik << endl;
+	system("cls");
 	long long uang;
+	gotoxy(30, 14);
+	call_border();
+	cout << "Nama\t: " << nama_menu << endl;
+	cout << "NIK\t: " << nik << endl;
 	cout << "Masukkan uang anda\t: "; cin >> uang;
 	cout << "Total Pembayaran\t: " << endl;
 	cout << "Kembalian\t: " << endl;
+}
+
+void _printf(const char *str, short fcode, short bcode){
+	
 }
