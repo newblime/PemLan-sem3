@@ -36,15 +36,6 @@ bool open_file(std::string nama_file, file_pajak *pajak){
   for(int i = 0; i < pajak->banyak; i++){
     data_pajak *currdp = &pajak->pajak[i];
 
-    int namesize;
-    file.read(reinterpret_cast<char*>(&namesize), sizeof(int));
-
-    char nama[namesize+1];
-    file.read(nama, namesize);
-    nama[namesize] = '\0';
-
-    currdp->nama = string(nama);
-
     file.read(reinterpret_cast<char*>(&currdp->nik), sizeof(currdp->nik));
     file.read(reinterpret_cast<char*>(&currdp->pajak_sekarang), sizeof(currdp->pajak_sekarang));
   }
@@ -65,10 +56,6 @@ void save_file(std::string nama_file, file_pajak *pajak){
   for(int i = 0; i < pajak->banyak; i++){
     data_pajak *currdp = &pajak->pajak[i];
 
-    int namelen = currdp->nama.length();
-    file.write(reinterpret_cast<char*>(&namelen), sizeof(int));
-
-    file.write(currdp->nama.c_str(), namelen);
     file.write(reinterpret_cast<char*>(&currdp->nik), sizeof(currdp->nik));
     file.write(reinterpret_cast<char*>(&currdp->pajak_sekarang), sizeof(currdp->pajak_sekarang));
   }

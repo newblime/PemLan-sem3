@@ -4,10 +4,9 @@
 #include "vector"
 #include "string"
 
-void init_output();
-
 void delay();
 void loadscr();
+void loadingbar(std::string load);
 void loadscreen();
 void loading();
 void tampilan_menu();

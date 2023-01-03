@@ -18,7 +18,7 @@ float hitung_totalbensin(unsigned long long uang, data_pajak dp, unsigned long l
 /*      untuk pengurusan data     */
 
 // pengambilan data pajak
-void init_datapajak();
+void init_datapajak(std::string namafile);
 
 // mencari index data pajak berdasarkan nik
 // fungsi ini akan return -1 jika tidak ada nik yang cocok di database

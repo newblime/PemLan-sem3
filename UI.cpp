@@ -64,8 +64,14 @@ void print(vector<string>&stringVec){
 
 void loadscr(){
 	vector<char>load = {'M', 'Y', 'P', 'E', 'R', 'T', 'A', 'M', 'O', 'N', 'A'};
+
+  int len = load.size() + (4 * max((int)load.size()-1, 0));
+
+  COORD sterm = besarTerminal();
+  set_cursor_pos((sterm.X-len)/2, sterm.Y/2);
+
 	for(int i = 0; i < load.size(); i++) {
-		cout << "\t " << load[i];
+		cout << "    " << load[i];
 		delay();
 	}
 	sleep(2);
@@ -74,83 +80,50 @@ void loadscr(){
 void loadscreen(){
     _printf("", 232, 15);
     clr_terminal();
-    set_cursor_pos(20,10);
     loadscr();
+}
+
+void loadingbar(string load){
+  SetConsoleCP(437);
+	SetConsoleOutputCP(437);
+	int bar1 = 177, bar2 = 219;
+
+  COORD sterm = besarTerminal();
+
+  set_cursor_pos((sterm.X-load.length())/2, sterm.Y/2-2);
+  cout << load;
+
+  set_cursor_pos((sterm.X-25)/2, sterm.Y/2+2);
+  for(int i = 0; i < 25; i++)
+    cout << (char)bar1;
+  
+  set_cursor_pos((sterm.X-25)/2, sterm.Y/2+2);
+  for(int i = 0; i < 25; i++){
+    cout << (char)bar2;
+    Sleep(100);
+  }
 }
 
 //fungsi loading bisa digunain untuk loadscreen dari fungsi satu ke fungsi lainnya
 void loading(){
   _printf("", 232, 15);
 	clr_terminal();
-	set_cursor_pos(32, 10);
-
-	SetConsoleCP(437);
-	SetConsoleOutputCP(437);
-	int bar1 = 177, bar2 = 219;
-
-	cout << "\n\t\t\t\t\t     L O A D I N G...";
-	cout << "\n\n\n\t\t\t\t\t";
-
-	for(int i = 0; i < 25; i++)
-		cout << (char)bar1;
-
-	cout << "\r";
-	cout << "\t\t\t\t\t";
-
-	for(int i = 0; i < 25; i++){
-		cout << (char)bar2;
-		Sleep(100);
-	}
-	//cout << "\n\n\t\t\t\t\t" << (char)1 << "!";
-	//system("pause");
+	
+  loadingbar("L O A D I N G ...");
 }
 
 void load_struk(){
     _printf("", 232, 15);
 	clr_terminal();
-	set_cursor_pos(32, 10);
 
-	SetConsoleCP(437);
-	SetConsoleOutputCP(437);
-	int bar1 = 177, bar2 = 219;
-
-	cout << "\n\t\t\t\t\t     P E M B U A T A N S T R U K...";
-	cout << "\n\n\n\t\t\t\t\t";
-
-	for(int i = 0; i < 25; i++)
-		cout << (char)bar1;
-
-	cout << "\r";
-	cout << "\t\t\t\t\t";
-
-	for(int i = 0; i < 25; i++){
-		cout << (char)bar2;
-		Sleep(100);
-	}
+  loadingbar("P E M B U A T A N  S T R U K ...");
 }
 
 void load_mencari(){
 	_printf("", 232, 15);
 	clr_terminal();
-	set_cursor_pos(32, 10);
-
-	SetConsoleCP(437);
-	SetConsoleOutputCP(437);
-	int bar1 = 177, bar2 = 219;
-
-	cout << "\n\t\t\t\t\t     M E N C A R I D A T A...";
-	cout << "\n\n\n\t\t\t\t\t";
-
-	for(int i = 0; i < 25; i++)
-		cout << (char)bar1;
-
-	cout << "\r";
-	cout << "\t\t\t\t\t";
-
-	for(int i = 0; i < 25; i++){
-		cout << (char)bar2;
-		Sleep(100);
-	}
+	
+  loadingbar("M E N C A R I  D A T A ...");
 }
 
 void tampilan_menu(){
@@ -159,9 +132,15 @@ void tampilan_menu(){
 	cout << "Program Duplikat MyPertamona" << endl;
 
   input_nik(&nik);
+  input_user(&nama_menu);
 
 	int idx = search_datapajak(nik);
-	nama_menu = get_datapajak(idx).nama;
+  if(idx == -1){
+    cout << "NIK tidak ditemukan." << endl;
+    _getch();
+    tampilan_menu();
+    return;
+  }
 
 	clr_terminal();
 
@@ -180,6 +159,8 @@ void tampilan_menu(){
 				ambil_opsi(index-1)->fungsi();
 			else
 				break;
+    
+      clr_terminal();
 	}
 }
 
@@ -213,7 +194,6 @@ void struk(){
 	clr_terminal();
 	unsigned long long uang;
 	set_cursor_pos(20, 14);
-	call_border();
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
 	input_bayarbensin(&uang);
