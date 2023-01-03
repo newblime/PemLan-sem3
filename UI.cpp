@@ -13,12 +13,13 @@ string nama_menu;
 long long int nik;
 COORD coord = {0, 0};
 
-//fungsi gotoxy bisa digunain untuk atur posisi output
-void gotoxy(int x, int y){
-    COORD coord;
-    coord.X = x;
-    coord.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+
+// fungsi untuk mengamibl size pada terminal
+COORD besarTerminal(){
+  CONSOLE_SCREEN_BUFFER_INFO consoleinfo;
+  GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &consoleinfo);
+
+  return consoleinfo.dwSize;
 }
 
 void delay(){
@@ -32,21 +33,21 @@ void delay(){
 void border(){
 	int i, style = 178;
 	for(i = 0; i <= 70; i++){
-		gotoxy(i, 0);
+		set_cursor_pos(i, 0);
 		cout << (char)style;
-		gotoxy(i, 24);
+		set_cursor_pos(i, 24);
 		cout << (char)style;
 	}
 	for(i = 0; i <= 24; i++){
-		gotoxy(0, i);
+		set_cursor_pos(0, i);
 		cout << (char)style;
-		gotoxy(70, i);
+		set_cursor_pos(70, i);
 		cout << (char)style;
 	}
 }
 
 void call_border(){
-	system("cls");
+	clr_terminal();
 	border();
 	getch();
 }
@@ -69,23 +70,23 @@ void loadscr(){
 }
 
 void loadscreen(){
-    system("cls");
+    clr_terminal();
     system("color 70");
-    gotoxy(20,10);
+    set_cursor_pos(20,10);
     loadscr();
 }
 
 //fungsi loading bisa digunain untuk loadscreen dari fungsi satu ke fungsi lainnya
 void loading(){
     system("color 70");
-	system("cls");
+	clearScreen();
 	gotoxy(32, 10);
 
 	SetConsoleCP(437);
 	SetConsoleOutputCP(437);
 	int bar1 = 177, bar2 = 219;
 
-	cout << "\n\t\t\t\t\t     L O A D I N G...";
+	cout << "\n\t\t\t\t\t     P E M B U A T A N S T R U K...";
 	cout << "\n\n\n\t\t\t\t\t";
 
 	for(int i = 0; i < 25; i++)
@@ -151,14 +152,13 @@ void load_mencari(){
 }
 
 void tampilan_menu(){
-	system("cls");
-	gotoxy(20, 5);
+	clr_terminal();
+
 	cout << "Program Duplikat MyPertamina" << endl;
+  input_user(&nama_menu);
+  input_nik(&nik);
 
-	cout << "Masukkan nama anda\t: "; getline(cin, nama_menu);
-	cout << "Masukkan nomor NIK anda : "; cin >> nik;
-
-	system("cls");
+	clr_terminal();
 
 	cout << "Selamat datang di aplikasi MyPertamona " << nama_menu << endl;
 	cout << "Menu program\t: " << endl;
@@ -179,8 +179,8 @@ void tampilan_lokasi(){
 }
 
 void harga_bensin(){
-	system("cls");
-	gotoxy(30, 14);
+	clr_terminal();
+	set_cursor_pos(30, 14);
 	cout << "Nama: " << nama_menu << endl;
 	cout << "NIK : " << nik << endl;
 	loading();
@@ -190,7 +190,8 @@ void harga_bensin(){
 
 // namanya jangan sama dengan struct data_pajak
 void _data_pajak(){
-	system("cls");
+	clr_terminal();
+	set_cursor_pos(30, 14);
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
 	load_mencari();
@@ -199,9 +200,9 @@ void _data_pajak(){
 }
 
 void struk(){
-	system("cls");
+	clr_terminal();
 	long long uang;
-	pembuatan_struk();
+	gotoxy(30, 14);
 	call_border();
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
