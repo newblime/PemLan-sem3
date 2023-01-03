@@ -6,7 +6,6 @@
 
 void delay();
 void loadscr();
-void gotoxy();
 void loadscreen();
 void loading();
 void tampilan_menu();
@@ -22,6 +21,16 @@ void call_border();
 // parameter paling akhir sama seperti parameter yang dikasih para printf
 //
 // menggunakan library luar
-void _printf(const char *str, short fcode, short bcode, ...);
+__declspec(dllimport) void _printf(const char *str, unsigned short fcode, unsigned short bcode, ...);
+
+// fungsi ini digunakan ketika memerlukan menghapus tampilan pada terminal
+//
+// menggunakan library luar
+__declspec(dllimport) void clr_terminal();
+
+// fungsi ini digunakan untuk mengubah posisi cursor
+//
+// menggunakan library luar
+__declspec(dllimport) void set_cursor_pos(int x, int y);
 
 #endif
