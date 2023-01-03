@@ -4,6 +4,8 @@
 #include "vector"
 #include "string"
 
+void init_output();
+
 void delay();
 void loadscr();
 void loadscreen();
@@ -16,11 +18,14 @@ void struk();
 void print(std::vector<std::string>&);
 void border();
 void call_border();
+void load_struk();
+void load_mencari();
 
 // pemanggilan fungsi sama seperti printf, namun dengan tambahan code pewarnaan
 // parameter paling akhir sama seperti parameter yang dikasih para printf
 //
 // menggunakan library luar
+<<<<<<< HEAD
 __declspec(dllimport) void _printf(const char *str, unsigned short fcode, unsigned short bcode, ...);
 
 // fungsi ini digunakan ketika memerlukan menghapus tampilan pada terminal
@@ -32,5 +37,8 @@ __declspec(dllimport) void clr_terminal();
 //
 // menggunakan library luar
 __declspec(dllimport) void set_cursor_pos(int x, int y);
+=======
+void _printf(const char *str, short fcode, short bcode);
+>>>>>>> 1c6cc5e7d47d93ad8e16a03df289ed2ab10a95e5
 
 #endif

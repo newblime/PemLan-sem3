@@ -6,8 +6,6 @@
 #include <conio.h>
 #include "opsi.h"
 #include "fungsional.h"
-#include "input.h"
-#include "UI.h"
 
 using namespace std;
 
@@ -81,14 +79,14 @@ void loadscreen(){
 //fungsi loading bisa digunain untuk loadscreen dari fungsi satu ke fungsi lainnya
 void loading(){
     system("color 70");
-	clr_terminal();
-	set_cursor_pos(32, 10);
+	clearScreen();
+	gotoxy(32, 10);
 
 	SetConsoleCP(437);
 	SetConsoleOutputCP(437);
 	int bar1 = 177, bar2 = 219;
 
-	cout << "\n\t\t\t\t\t     L O A D I N G...";
+	cout << "\n\t\t\t\t\t     P E M B U A T A N S T R U K...";
 	cout << "\n\n\n\t\t\t\t\t";
 
 	for(int i = 0; i < 25; i++)
@@ -101,7 +99,6 @@ void loading(){
 		cout << (char)bar2;
 		Sleep(100);
 	}
-
 	//cout << "\n\n\t\t\t\t\t" << (char)1 << "!";
 	//system("pause");
 }
@@ -115,7 +112,7 @@ void tampilan_menu(){
 
 	clr_terminal();
 
-	cout << "Selamat datang di aplikasi MyPertamona" << nama_menu << endl;
+	cout << "Selamat datang di aplikasi MyPertamona " << nama_menu << endl;
 	cout << "Menu program\t: " << endl;
 
   	for(int i = 0; i < banyak_opsiarray(); i++)
@@ -148,6 +145,7 @@ void _data_pajak(){
 	set_cursor_pos(30, 14);
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
+	load_mencari();
 	cout << "Harga bensin berdasarkan pajak\t: " << endl;
 	search_datapajak(nik);
 }
@@ -155,7 +153,7 @@ void _data_pajak(){
 void struk(){
 	clr_terminal();
 	long long uang;
-	set_cursor_pos(30, 14);
+	gotoxy(30, 14);
 	call_border();
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
