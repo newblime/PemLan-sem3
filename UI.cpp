@@ -6,40 +6,19 @@
 #include <conio.h>
 #include "opsi.h"
 #include "fungsional.h"
-#include "input.h"
-#include "UI.h"
 
 using namespace std;
 
 string nama_menu;
-unsigned long long nik;
+long long int nik;
 COORD coord = {0, 0};
-
-
-void init_output(){
-  SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), ENABLE_MOUSE_INPUT | ENABLE_PROCESSED_OUTPUT | 0x0004);
-}
 
 //fungsi gotoxy bisa digunain untuk atur posisi output
 void gotoxy(int x, int y){
-  printf("\x1b[%d;%dH", x, y);
-}
-
-COORD get_cmdsize(){
-  CONSOLE_SCREEN_BUFFER_INFO consoleinfo;
-  GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &consoleinfo);
-
-  return consoleinfo.dwSize;
-}
-
-void clearScreen(){
-  COORD cmdsize = get_cmdsize();
-  printf("\x1b[%d;%dH", cmdsize.Y-1, 0);
-
-  for(int i = 0; i < cmdsize.Y; i++){
-    printf("\x1b[K");
-    printf("\x1b[1A");
-  }
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
 void delay(){
@@ -67,7 +46,7 @@ void border(){
 }
 
 void call_border(){
-	clearScreen();
+	system("cls");
 	border();
 	getch();
 }
@@ -90,7 +69,7 @@ void loadscr(){
 }
 
 void loadscreen(){
-    clearScreen();
+    system("cls");
     system("color 70");
     gotoxy(20,10);
     loadscr();
@@ -99,7 +78,7 @@ void loadscreen(){
 //fungsi loading bisa digunain untuk loadscreen dari fungsi satu ke fungsi lainnya
 void loading(){
     system("color 70");
-	clearScreen();
+	system("cls");
 	gotoxy(32, 10);
 
 	SetConsoleCP(437);
@@ -173,12 +152,13 @@ void load_mencari(){
 
 void tampilan_menu(){
 	system("cls");
-
+	gotoxy(20, 5);
 	cout << "Program Duplikat MyPertamina" << endl;
+
 	cout << "Masukkan nama anda\t: "; getline(cin, nama_menu);
 	cout << "Masukkan nomor NIK anda : "; cin >> nik;
 
-	clearScreen();
+	system("cls");
 
 	cout << "Selamat datang di aplikasi MyPertamona " << nama_menu << endl;
 	cout << "Menu program\t: " << endl;
@@ -186,10 +166,9 @@ void tampilan_menu(){
   	for(int i = 0; i < banyak_opsiarray(); i++)
     	cout << (i+1) << ". " << ambil_opsi(i)->deskripsi_opsi << endl;
 
-  _printf("", 231, 232);
-
 	int index;
-  input_opsi(&index);
+
+	cout << "Masukkan pilihan\t: "; cin >> index;
 
   	ambil_opsi(index-1)->fungsi();
 }
@@ -200,7 +179,7 @@ void tampilan_lokasi(){
 }
 
 void harga_bensin(){
-	clearScreen();
+	system("cls");
 	gotoxy(30, 14);
 	cout << "Nama: " << nama_menu << endl;
 	cout << "NIK : " << nik << endl;
@@ -212,7 +191,6 @@ void harga_bensin(){
 // namanya jangan sama dengan struct data_pajak
 void _data_pajak(){
 	system("cls");
-	gotoxy(30, 14);
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
 	load_mencari();
@@ -221,7 +199,7 @@ void _data_pajak(){
 }
 
 void struk(){
-	clearScreen();
+	system("cls");
 	long long uang;
 	pembuatan_struk();
 	call_border();
@@ -230,4 +208,8 @@ void struk(){
 	cout << "Masukkan uang anda\t: "; cin >> uang;
 	cout << "Total Pembayaran\t: " << endl;
 	cout << "Kembalian\t: " << endl;
+}
+
+void _printf(const char *str, short fcode, short bcode){
+	
 }

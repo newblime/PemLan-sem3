@@ -4,8 +4,6 @@
 #include "vector"
 #include "string"
 
-void init_output();
-
 void delay();
 void loadscr();
 void gotoxy();

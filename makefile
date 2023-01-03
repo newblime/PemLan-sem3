@@ -2,7 +2,7 @@ main: compile link delete_compiled
 	
 
 link:
-	g++ -o bensin *.o ./User32.lib
+	g++ -o bensin *.o
 
 compile:
 	g++ -c *.cpp

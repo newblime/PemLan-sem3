@@ -7,8 +7,6 @@
 using namespace std;
 
 int main(){
-  init_output();
-
   loadscreen();
 
   init_opsi();
