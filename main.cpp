@@ -7,6 +7,7 @@
 using namespace std;
 
 int main(){
+  init_datapajak();
   init_output();
 
   loadscreen();

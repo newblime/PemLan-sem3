@@ -3,11 +3,6 @@
 
 using namespace std;
 
-void input_user(string *user){
-    cout<<"Masukkan Username\n";
-    getline(cin, *user);
-}
-
 void input_nik(unsigned long long *nik){
     cout<<"Masukkan NIK anda\n";
     cin>> *nik;

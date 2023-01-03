@@ -72,15 +72,15 @@ void loadscr(){
 }
 
 void loadscreen(){
+    _printf("", 232, 15);
     clr_terminal();
-    system("color 70");
     set_cursor_pos(20,10);
     loadscr();
 }
 
 //fungsi loading bisa digunain untuk loadscreen dari fungsi satu ke fungsi lainnya
 void loading(){
-    system("color 70");
+  _printf("", 232, 15);
 	clr_terminal();
 	set_cursor_pos(32, 10);
 
@@ -106,9 +106,9 @@ void loading(){
 }
 
 void load_struk(){
-    system("color 70");
-	system("cls");
-	gotoxy(32, 10);
+    _printf("", 232, 15);
+	clr_terminal();
+	set_cursor_pos(32, 10);
 
 	SetConsoleCP(437);
 	SetConsoleOutputCP(437);
@@ -130,9 +130,9 @@ void load_struk(){
 }
 
 void load_mencari(){
-	system("color 70");
-	system("cls");
-	gotoxy(32, 10);
+	_printf("", 232, 15);
+	clr_terminal();
+	set_cursor_pos(32, 10);
 
 	SetConsoleCP(437);
 	SetConsoleOutputCP(437);
@@ -156,22 +156,31 @@ void load_mencari(){
 void tampilan_menu(){
 	clr_terminal();
 
-	cout << "Program Duplikat MyPertamina" << endl;
-  input_user(&nama_menu);
+	cout << "Program Duplikat MyPertamona" << endl;
+
   input_nik(&nik);
+
+	int idx = search_datapajak(nik);
+	nama_menu = get_datapajak(idx).nama;
 
 	clr_terminal();
 
 	cout << "Selamat datang di aplikasi MyPertamona " << nama_menu << endl;
-	cout << "Menu program\t: " << endl;
 
-  	for(int i = 0; i < banyak_opsiarray(); i++)
-    	cout << (i+1) << ". " << ambil_opsi(i)->deskripsi_opsi << endl;
+	while(true){
+			cout << "Menu program\t: " << endl;
 
-	int index;
-  input_opsi(&index);
+			for(int i = 0; i < banyak_opsiarray(); i++)
+				cout << (i+1) << ". " << ambil_opsi(i)->deskripsi_opsi << endl;
 
-  	ambil_opsi(index-1)->fungsi();
+			int index;
+			input_opsi(&index);
+
+			if(index > 0)
+				ambil_opsi(index-1)->fungsi();
+			else
+				break;
+	}
 }
 
 void tampilan_lokasi(){
@@ -181,9 +190,9 @@ void tampilan_lokasi(){
 
 void harga_bensin(){
 	clr_terminal();
-	set_cursor_pos(30, 14);
-	cout << "Nama: " << nama_menu << endl;
-	cout << "NIK : " << nik << endl;
+	set_cursor_pos(20, 14);
+	cout << "Nama: " << &nama_menu << endl;
+	cout << "NIK : " << &nik << endl;
 	loading();
 	unsigned long long hargabensin = hitung_hargabensin(get_datapajak(search_datapajak(nik)), 10000);
 	cout << "Pajak Bensin : " << hargabensin << endl;
@@ -192,22 +201,22 @@ void harga_bensin(){
 // namanya jangan sama dengan struct data_pajak
 void _data_pajak(){
 	clr_terminal();
-	set_cursor_pos(30, 14);
-	cout << "Nama\t: " << nama_menu << endl;
-	cout << "NIK\t: " << nik << endl;
+	set_cursor_pos(20, 14);
+	cout << "Nama\t: " << &nama_menu << endl;
+	cout << "NIK\t: " << &nik << endl;
 	load_mencari();
 	cout << "Harga bensin berdasarkan pajak\t: " << endl;
-	search_datapajak(nik);
+	get_datapajak(search_datapajak(nik));
 }
 
 void struk(){
 	clr_terminal();
-	long long uang;
-	set_cursor_pos(30, 14);
+	unsigned long long uang;
+	set_cursor_pos(20, 14);
 	call_border();
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
-	cout << "Masukkan uang anda\t: "; cin >> uang;
-	cout << "Total Pembayaran\t: " << endl;
-	cout << "Kembalian\t: " << endl;
+	input_bayarbensin(&uang);
+	float total = hitung_totalbensin(uang, get_datapajak(search_datapajak(nik)), 10000);
+	cout << "Total harga bensin\t: " << total << endl;
 }
