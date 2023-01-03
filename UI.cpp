@@ -72,11 +72,7 @@ void loadscr(){
 }
 
 void loadscreen(){
-<<<<<<< HEAD
     clr_terminal();
-=======
-    clearScreen();
->>>>>>> 1c6cc5e7d47d93ad8e16a03df289ed2ab10a95e5
     system("color 70");
     set_cursor_pos(20,10);
     loadscr();
@@ -85,13 +81,8 @@ void loadscreen(){
 //fungsi loading bisa digunain untuk loadscreen dari fungsi satu ke fungsi lainnya
 void loading(){
     system("color 70");
-<<<<<<< HEAD
 	clr_terminal();
 	set_cursor_pos(32, 10);
-=======
-	clearScreen();
-	gotoxy(32, 10);
->>>>>>> 1c6cc5e7d47d93ad8e16a03df289ed2ab10a95e5
 
 	SetConsoleCP(437);
 	SetConsoleOutputCP(437);
@@ -169,11 +160,7 @@ void tampilan_menu(){
   input_user(&nama_menu);
   input_nik(&nik);
 
-<<<<<<< HEAD
 	clr_terminal();
-=======
-	clearScreen();
->>>>>>> 1c6cc5e7d47d93ad8e16a03df289ed2ab10a95e5
 
 	cout << "Selamat datang di aplikasi MyPertamona " << nama_menu << endl;
 	cout << "Menu program\t: " << endl;
@@ -181,11 +168,6 @@ void tampilan_menu(){
   	for(int i = 0; i < banyak_opsiarray(); i++)
     	cout << (i+1) << ". " << ambil_opsi(i)->deskripsi_opsi << endl;
 
-<<<<<<< HEAD
-=======
-  _printf("", 231, 232);
-
->>>>>>> 1c6cc5e7d47d93ad8e16a03df289ed2ab10a95e5
 	int index;
   input_opsi(&index);
 
@@ -198,13 +180,8 @@ void tampilan_lokasi(){
 }
 
 void harga_bensin(){
-<<<<<<< HEAD
 	clr_terminal();
 	set_cursor_pos(30, 14);
-=======
-	clearScreen();
-	gotoxy(30, 14);
->>>>>>> 1c6cc5e7d47d93ad8e16a03df289ed2ab10a95e5
 	cout << "Nama: " << nama_menu << endl;
 	cout << "NIK : " << nik << endl;
 	loading();
@@ -224,15 +201,9 @@ void _data_pajak(){
 }
 
 void struk(){
-<<<<<<< HEAD
 	clr_terminal();
 	long long uang;
 	set_cursor_pos(30, 14);
-=======
-	clearScreen();
-	long long uang;
-	pembuatan_struk();
->>>>>>> 1c6cc5e7d47d93ad8e16a03df289ed2ab10a95e5
 	call_border();
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
