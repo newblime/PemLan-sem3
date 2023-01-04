@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(){
-  init_datapajak("test.bin");
+  init_datapajak("data_penggunaan.bin");
 
   loadscreen();
 

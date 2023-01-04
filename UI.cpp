@@ -15,6 +15,13 @@ string nama_menu;
 unsigned long long nik;
 COORD coord = {0, 0};
 
+std::vector<std::pair<const char*, unsigned long long>> _tipebensin = {
+  {"Solar", 7000},
+  {"Pertalite", 10000},
+  {"Dexlite", 13000},
+  {"Pertamax", 17000}
+};
+
 
 // fungsi untuk mengamibl size pada terminal
 COORD besarTerminal(){
@@ -128,11 +135,13 @@ void load_mencari(){
 
 void tampilan_menu(){
 	clr_terminal();
-
+	set_cursor_pos(35, 0);
 	cout << "Program Duplikat MyPertamona" << endl;
 
-  input_nik(&nik);
+  fflush(stdin);
+
   input_user(&nama_menu);
+  input_nik(&nik);
 
 	int idx = search_datapajak(nik);
   if(idx == -1){
@@ -144,21 +153,38 @@ void tampilan_menu(){
 
 	clr_terminal();
 
-	cout << "Selamat datang di aplikasi MyPertamona " << nama_menu << endl;
-
 	while(true){
+		set_cursor_pos(35, 0);
+		cout << "Selamat datang di aplikasi MyPertamona " << nama_menu << endl;
+		cout << endl;
+
 			cout << "Menu program\t: " << endl;
 
 			for(int i = 0; i < banyak_opsiarray(); i++)
 				cout << (i+1) << ". " << ambil_opsi(i)->deskripsi_opsi << endl;
+      
+      cout << "0. Keluar dari program" << endl;
+	    cout << endl;
 
 			int index;
 			input_opsi(&index);
 
 			if(index > 0)
-				ambil_opsi(index-1)->fungsi();
-			else
+        if(index <= banyak_opsiarray())
+				  ambil_opsi(index-1)->fungsi();
+        else
+          continue;
+			else{
+        _printf("", 231, 0);
+        clr_terminal();
+        _printf("", 46, 0);
+				cout << "Terimakasih sudah memakai MyPertamona " << (char)1 << endl;
+        _printf("", 231, 0);
 				break;
+      }
+      
+      cout << "Pencet apapun untuk melanjutkan..." << endl;
+      _getch();
     
       clr_terminal();
 	}
@@ -171,32 +197,76 @@ void tampilan_lokasi(){
 
 void harga_bensin(){
 	clr_terminal();
-	set_cursor_pos(20, 14);
-	cout << "Nama: " << &nama_menu << endl;
-	cout << "NIK : " << &nik << endl;
+
+  cout << "Tipe-Tipe bensin" << endl;
+  for(int i = 0; i < _tipebensin.size(); i++)
+    cout << i+1 << ". " << _tipebensin[i].first << "\t: Rp." << _tipebensin[i].second << endl;
+  
+  cout << endl;
+
+  int opsi;
+  input_opsi(&opsi);
+
+  if(opsi <= 0 || opsi > _tipebensin.size()){
+    cout << "Tipe bensin salah." << endl;
+    return;
+  }
+
 	loading();
-	unsigned long long hargabensin = hitung_hargabensin(get_datapajak(search_datapajak(nik)), 10000);
-	cout << "Pajak Bensin : " << hargabensin << endl;
+
+	unsigned long long hargabensin = hitung_hargabensin(get_datapajak(search_datapajak(nik)), _tipebensin[opsi-1].second);
+  cout << endl;
+	clr_terminal();
+	cout << "Nama\t\t\t: " << nama_menu << endl;
+	cout << "NIK\t\t\t: " << nik << endl;
+	cout << "Harga akhir bensin\t: " << hargabensin << endl;
 }
 
 // namanya jangan sama dengan struct data_pajak
 void _data_pajak(){
-	clr_terminal();
 	set_cursor_pos(20, 14);
-	cout << "Nama\t: " << &nama_menu << endl;
-	cout << "NIK\t: " << &nik << endl;
 	load_mencari();
-	cout << "Harga bensin berdasarkan pajak\t: " << endl;
-	get_datapajak(search_datapajak(nik));
+  cout << endl;
+	clr_terminal();
+	cout << "Nama\t\t: " << nama_menu << endl;
+	cout << "NIK\t\t: " << nik << endl;
+	cout << "Pajak Gaji\t: ";
+	cout << get_datapajak(search_datapajak(nik)).pajak_sekarang << endl;
 }
 
 void struk(){
 	clr_terminal();
 	unsigned long long uang;
-	set_cursor_pos(20, 14);
+
+  cout << "Tipe-tipe bensin" << endl;
+  for(int i = 0; i < _tipebensin.size(); i++)
+    cout << i+1 << ". " << _tipebensin[i].first << "\t: Rp." << _tipebensin[i].second << endl;
+  
+  cout << endl;
+  
+  int opsi;
+  input_opsi(&opsi);
+
+  if(opsi <= 0 || opsi > _tipebensin.size()){
+    cout << "Tipe bensin salah." << endl;
+    return;
+  }
+
+  data_pajak currdp = get_datapajak(search_datapajak(nik));
+  unsigned long long harganormal = _tipebensin[opsi].second;
+  unsigned long long hargasub = hitung_hargabensin(currdp, harganormal);
+
+	input_bayarbensin(&uang);
+	float total = hitung_totalbensin(uang, get_datapajak(search_datapajak(nik)), harganormal);
+
+	load_struk();
+	clr_terminal();
 	cout << "Nama\t: " << nama_menu << endl;
 	cout << "NIK\t: " << nik << endl;
-	input_bayarbensin(&uang);
-	float total = hitung_totalbensin(uang, get_datapajak(search_datapajak(nik)), 10000);
-	cout << "Total harga bensin\t: " << total << endl;
+  cout << endl;
+  cout << "====================================" << endl;
+  cout << "Harga normal bensin\t\t: " << harganormal << endl;
+  cout << "Harga perhitungan\t\t: " << hargasub << endl;
+  cout << endl;
+	cout << "Liter bensin yang dibeli\t: " << total << "L" << endl;
 }
