@@ -1,13 +1,14 @@
 #include "fungsional.h"
 #include "opsi.h"
 #include "UI.h"
+#include "Windows.h"
 
 #include "iostream"
 
 using namespace std;
 
 int main(){
-  init_datapajak("data_penggunaan.bin");
+  init_datapajak("test.bin");
 
   loadscreen();
 

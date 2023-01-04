@@ -28,6 +28,8 @@ COORD besarTerminal(){
   CONSOLE_SCREEN_BUFFER_INFO consoleinfo;
   GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &consoleinfo);
 
+  cout << consoleinfo.dwSize.X << " " << consoleinfo.dwSize.Y << endl;
+
   return consoleinfo.dwSize;
 }
 
@@ -177,9 +179,7 @@ void tampilan_menu(){
 			else{
         _printf("", 231, 0);
         clr_terminal();
-        _printf("", 46, 0);
 				cout << "Terimakasih sudah memakai MyPertamona " << (char)1 << endl;
-        _printf("", 231, 0);
 				break;
       }
       
